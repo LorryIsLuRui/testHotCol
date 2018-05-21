@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>性能优化-异步加载</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<!-- <script type="text/javascript" defer src="./defer1.js"></script>
+	<script type="text/javascript" defer src="./defer2.js"></script> -->
+	<script type="text/javascript" async src="./async1.js"></script>
+	<script type="text/javascript" async src="./async2.js"></script>
+</head>
+<body>
+    <div class="d">
+    	test
+    	<script type="text/javascript">
+    		console.log('write');
+    		document.write('<span>defer</span>');
+    	</script>
+    	<script type="text/javascript">
+    		for(var i=0;i<200000;i++){
+    			if(i%20000===0){
+    				console.log(i);
+    			}
+    		}
+    	</script>
+    </div>
+</body>
+</html>

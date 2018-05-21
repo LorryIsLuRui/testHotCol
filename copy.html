@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>深、浅拷贝</title>
+</head>
+<body>
+	
+	<script>
+		var Chinese = {
+		　　nation:'中国'
+		};
+		var Doctor ={
+		　　career:'医生'
+		}
+		function deepCopy(p, c) {
+		　　var c = c || {};
+		　　for (var i in p) {
+		　　　　if (typeof p[i] === 'object') {
+					// console.log(p[i]);
+		　　　　　　c[i] = (p[i].constructor === Array) ? [] : {};
+		　　　　　　deepCopy(p[i], c[i]);
+		　　　　} else {
+					// console.log(p[i])
+		　　　　　　　c[i] = p[i];
+		　　　　}
+		　　}
+		　　return c;
+		}
+		Chinese.birthPlaces = ['北京',['上海','xian'],'香港'];
+		var Doctor = deepCopy(Chinese);
+		Doctor.birthPlaces.push('厦门');
+		Chinese.birthPlaces.splice(0,1,'xian');
+		console.log(Doctor);
+		console.log(Chinese);
+
+		
+	</script>
+</body>
+</html>

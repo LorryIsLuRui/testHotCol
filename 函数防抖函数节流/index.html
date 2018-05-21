@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>debounce throttle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h2>函数防抖：触发一个事件，在指定时间后执行</h2>
+    <input type="text" id="input">
+    <script>
+
+        var dom=document.getElementById('input');
+        function debounce(fn,time){
+            var timer=null;
+            return function(){
+                if(!timer){
+                    timer=setTimeout(fn,time);
+                    
+                }else{
+                    clearTimeout(timer);
+                }
+            }
+        }
+        // var test=debounce(() => console.log("a"),1000);
+        // setInterval(test,200);
+        // function change(){
+        //     console.log(dom.value);
+        // }
+        
+        // dom.addEventListener('keyup',function(){
+        //     var test=debounce(change,1000);
+        //     test();
+        // });
+    </script>
+    <p></p>
+    <h2>函数节流：执行很频繁，但是还是按照制定间隔来执行 比如实现拖拽</h2>
+    <script>
+        function throttle(fn,time){
+            var lastTime=null;
+            return function(){
+                var nowTime=new Date();
+                if(nowTime-lastTime>time || !lastTime){
+                    fn();
+                    lastTime=nowTime;
+                }
+            }
+        }
+        var test=throttle(() => console.log("a"),3000);
+        setInterval(test,200);
+    </script>
+</body>
+</html>

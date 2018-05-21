@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+  	<meta charset="UTF-8">
+	<title>数组去重</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// 1.
+	// function unique(array) {
+	// 	var n=[];
+	// 	for(var i=0;i<array.length;i++){
+	// 		if(n.indexOf(array[i])==-1){
+	// 			n.push(array[i]);
+	// 		}
+	// 	}
+	// 	return n;
+	// }
+
+	// 2.
+	function unique(array){
+		console.log(array.length)
+		for(var i=0;i<array.length;i++){
+			for(var j=i+1;j<array.length-1;j++){
+				if(array[i]==array[j]){
+					array.splice(j,1);
+					array.length-=1;
+				}
+			}
+		}
+		return array;
+	}
+	console.log(unique([1,1,2,4,6,2]).length);
+</script>
+</html>

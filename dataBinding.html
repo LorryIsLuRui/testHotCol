@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>js实现vue双向数据绑定 利用访问器属性</title>
+</head>
+<body>
+	<input bind-value="value" type="text" placeholder="请输入..."  id="user-input">
+	<p bind-text="value" id="show-input"></p>
+	<script>
+	var elems=[document.getElementById('user-input'),document.getElementById('show-input')];
+		var data={
+			initValue:'',
+		};
+		function define(obj,propertyName) {
+			Object.defineProperty(obj,propertyName,{
+				get:function(){
+					return this.initValue;
+				},
+				set:function(currvalue){
+					this.initValue=currvalue;
+					//同步p
+					scan();
+				},
+			});
+		}
+		
+		define(data,'value');
+		data.value='';
+		scan();
+		//监听事件
+		elems[0].addEventListener('keyup',function(e){
+			var e=e||window.event;
+			data.value=e.target.value;
+		});
+		function scan(){
+			for(var i=0;i<elems.length;i++){
+				var ele=elems[i];
+				for(var j=0;j<ele.attributes.length;j++){
+					var attr=ele.attributes[j];
+					if(attr.nodeName.indexOf('bind')>=0){
+						elems[1].innerHTML=data.value;
+						elems[0].setAttribute('current-values',data.value);
+					}
+				}
+			}
+		}
+	</script>
+</body>
+</html>

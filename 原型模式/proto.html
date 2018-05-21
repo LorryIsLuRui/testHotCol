@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>原型模式</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<link href="" rel="stylesheet">
+    <style type="text/css">
+        
+div{
+    width:100%;  
+    height:1px;  
+    background:#c00;  
+    line-height:1px; 
+}
+
+      
+    </style>
+</head>
+<body>
+    <div class='box'>
+    
+</div>
+    
+    <script type="text/javascript">
+
+        // function fn(para){
+        //     var result=Array.from(new Set([...para]));
+        //     // console.log(Array.from(result));
+        //     result.sort(function(a,b){
+        //         if(a>b) return 1;
+        //         else return -1;
+        //     });
+        //     return result;
+        // }
+        // var arr=[10,1,3,5,5,8];
+        // var result=fn(arr);
+        // console.log(result);
+
+    	// var event={
+    	// 	on:function(eventName,callback){
+    	// 		if(!this.handles){
+    	// 			this.handles={};
+    	// 		}
+    	// 		if(!this.handles[eventName]){
+    	// 			this.handles[eventName]=[];
+    	// 		}
+    	// 		this.handles[eventName].push(callback);
+    	// 		console.log(this.handles);
+    	// 	},
+    	// 	emit:function(eventName){
+    	// 		if(this.handles[eventName].length!=0){
+    	// 			for(let i=0;i<this.handles[eventName].length;i++){
+    	// 				this.handles[eventName][i]();
+    	// 			}
+    	// 		}
+    	// 	},
+    	// 	remove:function(eventName,callback){
+    	// 		if(this.handles[eventName] instanceof Array){
+    	// 			var handles=this.handles[eventName];
+    	// 			for(let i=0;i<handles.length;i++){
+    	// 				if(handles[i]==callback){
+    	// 					break;
+    	// 				}
+    	// 			}
+    	// 			handles.splice(i,1);
+    	// 		}
+    	// 	}
+    	// };
+    	// function a1(){
+    	// 	console.log('a1');
+    	// }
+    	// function a2(){
+    	// 	console.log('a2');
+    	// }
+    	// function a3(){
+    	// 	console.log('a3');
+    	// }
+    	// event.on('a',a1);
+    	// event.on('a',a2);
+    	// event.on('a',a3);
+
+    	// event.emit('a');
+    	// event.remove('a',a1);
+    	// event.emit('a');
+
+    </script>
+</body>
+</html>

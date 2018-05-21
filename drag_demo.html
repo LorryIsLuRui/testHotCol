@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: coral;
+        }
+    </style>
+</head>
+<body>
+    <div class="drag_item"></div>
+</body>
+<script>
+    let drag = false;
+    let offsetX,offsetY;
+    const drag_item = document.querySelector('.drag_item');
+    //时间戳实现节流    
+    let throttle = (func,limit) => {
+        let lastRun = Date.now();
+        return function(){
+            if(Date.now() - lastRun >= limit) {
+                func.apply(this, arguments);
+                lastRun = Date.now();
+            }
+        }
+    }
+
+    drag_item.onmousedown = e => {
+        drag = true;
+        offsetX = e.pageX - drag_item.offsetLeft;// 鼠标相对于可视窗口的左边距离 - 元素与父元素的左边距
+        offsetY = e.pageY - drag_item.offsetTop; // 鼠标相对于可视窗口的顶边距离 - 元素与父元素的上边距
+        // 即储存鼠标相对于元素内的位置
+    }
+    
+    //将鼠标移动和松开绑定在document上防止移动过快脱离元素
+    document.onmousemove = throttle(e => {
+        if(drag){ // 判定鼠标是否在元素上
+            let x = e.pageX - offsetX;
+            let y = e.pageY - offsetY;
+            // 将坐标实时赋予position的left与top值
+            drag_item.style.left = x + 'px'; 
+            drag_item.style.top = y + 'px';
+        }
+    },1000/120);
+    document.onmouseup = () => drag = false;
+    
+</script>
+</html>
